@@ -1,0 +1,325 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>08-lecture-data_visualization</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+		
+		<!-- Include buttons for opening and closing the notes canvas or the chalkboard -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+			
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="images/astemir-almov-265122-unsplash.jpg" data-state="dimbg_dark">
+				<!-- Front page -->
+					<h1>Urban Big Data Analytics</h1>
+					
+					<i>Class 8</i><br>
+					<i>Data Visualization + Web Mapping</i><br><br>
+					
+					<p>
+					<small> July 30, 2018<br><br>
+					
+					Instructor: <a href="http://andyhong.org" target="_blank">Andy Hong</a>, <i>PhD</i><br>
+					
+					Postdoctoral Research and Teaching Fellow<br>
+					School of Population and Public Health<br>
+					University of British Columbia
+					</small>
+					</p>
+				</section>
+				<section>
+				<!-- Slide 1 -->
+					<h2>Assignment 4 out</h2>
+					<ul>
+						<li>More hands-on training in R</li>
+						<li>EDA and visualization</li>
+						<li>Send your R code to my email</li>
+					</ul>					
+				</section>
+				<section data-background-image="images/data_visualization.jpg" data-state="dimbg_dark">
+				<!-- Slide 2 -->
+				<div style="text-align:left; position:absolute; left:15%;">
+				<h1>Data Visualization</h1>
+				</div>
+				</section>
+				<section data-background-image="images/data_visualization.jpg" data-state="dimbg_darker">
+				<!-- Slide 3 -->	
+					<h2>What is data visualization?</h2>
+					<ul>						
+						<li>Representing data in a graphical format</li>
+						<li>Transforming numbers into visuals</li>
+						<li><font color="DeepSkyBlue">Good</font> graphics are simple, intuitive, and yet tell a complex and powerful story</li>
+						<li><font color="red">Bad</font> graphics are clusttered, embelished, and yet convey little and simple information</li>
+					</ul>						
+				</section>
+				<section>
+				<!-- Slide 4 -->	
+					<h2>Typical activities in a day</h2>
+					<small><a href="https://www.nytimes.com/2009/08/02/business/02metrics.html" target="_blank">New York Times graphics</a></small><br>
+					<img src="images/nyt_24_hours.png" height="500">
+				</section>
+				<section>
+				<!-- Slide 5 -->	
+					<h2>The rhythm of food</h2>
+					<small><a href="http://rhythm-of-food.net/peach" target="_blank">http://rhythm-of-food.net/peach</a></small><br>
+					<img src="images/peach.png" height="500">
+				</section>	
+				<section>
+				<!-- Slide 6 -->	
+				<h2>Tufte's 10 Rules</h2>
+				<img src="images/tufte_bio.jpg" height="400" style="float: left; margin-right: 100px">
+				<ul style="display: block">
+					<li>Edward Tufte - Yale professor</li>
+					<li>Living legend and expert in data visualization</li>
+					<li>"The da Vinci of data"</li>
+					<li>"Chart Master"</li>
+					<li>"The Data Artist"</li>		
+				</ul><br>
+				<div style="float: left;"><small>10 rules adapted from <a href="http://www.sealthreinhold.com/school/tuftes-rules/rule_one.php" target="_blank">sealthreinhold.com</a></small></div>
+					
+				</section>
+				<section>
+				<!-- Slide 7 -->	
+				<h2>1. Show your data</h2>
+				<div style="position:relative; width:1000px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out" data-fragment-index="0" src="images/rule1a.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="0" src="images/rule1b.png" style="position:absolute;center:0;left:0;" />
+				</div>
+				</section>
+				<section>
+				<!-- Slide 8 -->	
+				<h2>2. Use graphics</h2>
+				<div style="position:relative; margin:0 auto;">
+				  <img src="images/rule2.jpg" width="1000px" height="500px" style="osition:absolute;center:0;left:0;">
+				  <img class="fragment fade-in" data-fragment-index="0" width="700px" height="250px" src="images/rule2_quote.png" style="position:absolute;bottom:0;right:0;">
+				</div>
+				</section>
+				<section>
+				<!-- Slide 9 -->	
+				<h2>3. Avoid chartjunk</h2>
+				<div style="position:relative; width:1000px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out" data-fragment-index="0" src="images/rule3a.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="0" src="images/rule3b.png" style="position:absolute;center:0;left:0;" />
+				</div>
+				</section>
+				<section>
+				<!-- Slide 10 -->	
+				<h2>4. Utilize data-ink</h2>
+				<div style="position:relative; width:1000px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out" data-fragment-index="0" src="images/rule4a.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="0" src="images/rule4b.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="1" src="images/rule4c.png" style="position:absolute;center:0;left:0;" />
+			  </div>
+				</section>
+				
+				<section>
+				<!-- Slide 11 -->	
+				<h2>5. Use labels</h2>
+				<div style="position:relative; width:1000px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out" data-fragment-index="0" src="images/rule5a.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="0" src="images/rule5b.png" style="position:absolute;center:0;left:0;" />
+				</div>
+				</section>
+				
+				<section>
+				<!-- Slide 12 -->	
+				<h2>6. Utilize micro/macro</h2>
+				<div style="position:relative; width:1000px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out" data-fragment-index="0" src="images/rule6a.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="0" src="images/rule6b.png" style="position:absolute;center:0;left:0;" />
+					<img class="fragment fade-in" data-fragment-index="1" width="700px" height="200px" src="images/rule6_quote.png" style="position:absolute;bottom:0;right:0;">
+				</div>
+				</section>
+				
+				<section>
+				<!-- Slide 13 -->	
+				<h2>7. Separate layers</h2>
+				<div style="position:relative; width:1000px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out" data-fragment-index="0" src="images/rule7a.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="0" src="images/rule7b.png" style="position:absolute;center:0;left:0;" />
+				</div>
+				</section>
+				
+				<section>
+				<!-- Slide 14 -->	
+				<h2>8. Use multiples</h2>
+				<div style="position:relative; width:1000px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out" data-fragment-index="0" src="images/rule8a.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="0" src="images/rule8b.png" style="position:absolute;center:0;left:0;" />
+					<img class="fragment fade-in" data-fragment-index="1" width="700px" height="250px" src="images/rule8_quote.png" style="position:absolute;bottom:0;right:0;">
+				</div>
+				</section>
+				
+				<section>
+				<!-- Slide 15 -->	
+				<h2>9. Utilize color</h2>
+				<div style="position:relative; width:1000px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out" data-fragment-index="0" src="images/rule9a.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="0" src="images/rule9b.png" style="position:absolute;center:0;left:0;" />
+				</div>
+				</section>
+				
+				<section>
+				<!-- Slide 16 -->	
+				<h2>10. Understand narrative</h2>
+				<div style="position:relative; width:1000px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out" data-fragment-index="0" src="images/rule10a.png" style="position:absolute;center:0;left:0;" />
+				  <img class="fragment fade-in" data-fragment-index="0" src="images/rule10b.png" style="position:absolute;center:0;left:0;" />
+				</div>
+				</section>
+				
+				<section>
+				<!-- Slide 17 -->	
+					<h3>Visualization in R - ggplot2</h3>
+
+				<pre><code data-trim data-noescape>
+				# Initialize a plot
+				ggplot(data, aes(x = x, y = y))
+								
+				</code></pre>
+				
+				</section>
+				
+				<section>
+				<!-- Slide 18 -->	
+					<h3>Visualization in R - ggplot2</h3>
+					<pre class="fragment fade-in"><code data-trim data-noescape>
+					# Histogram	
+					ggplot(data, aes(x = x, y = y) + geom_histogram()
+					</code></pre>
+
+					<pre class="fragment fade-in"><code data-trim data-noescape>
+					# Scatter plot
+					ggplot(data, aes(x = x, y = y) + geom_point()
+					</code></pre>
+					
+					<pre class="fragment fade-in"><code data-trim data-noescape>
+					# Adding a trend line	
+					ggplot(data, aes(x = x, y = y) + geom_point() + geom_smooth()
+					</code></pre>
+					
+					<pre class="fragment fade-in"><code data-trim data-noescape>
+					# Box plot	
+					ggplot(data, aes(x = x, y = y) + geom_boxplot()	
+					</code></pre>
+					
+				</section>
+				
+				<section>
+				<!-- Slide 19 -->	
+					<h3>Interactive mapping  in R - leaflet</h3>
+					<pre><code data-trim data-noescape>
+					# Initialize a map
+					leaflet(data) %>% addTiles()
+								
+					</code></pre>
+				</section>
+				
+				<section>
+				<!-- Slide 20 -->	
+					<h3>Interactive mapping  in R - leaflet</h3>
+					<pre class="fragment fade-in"><code data-trim data-noescape>
+					# Add markers
+					leaflet(data) %>% addTiles() %>% 
+						addCircleMarkers(~long, ~lat)
+					</code></pre>
+					
+					<pre class="fragment fade-in"><code data-trim data-noescape>
+					# Visualize data
+					leaflet(data) %>% addTiles() %>% 
+						addCircleMarkers(~long, ~lat, radius=~value)
+					</code></pre>
+					
+					<pre class="fragment fade-in"><code data-trim data-noescape>
+					# Add colors
+					leaflet(data) %>% addTiles() %>% 
+						addCircleMarkers(~long, ~lat, color=~value)
+					</code></pre>
+					
+					<pre class="fragment fade-in"><code data-trim data-noescape>
+					# Add labels
+					leaflet(data) %>% addTiles() %>% 
+						addCircleMarkers(~long, ~lat, label=~label)		
+					</code></pre>
+				</section>
+				
+				<section>
+				<!-- Slide 21 -->
+					<h2>Group Session 8</h2>
+					<a href="https://urbanbigdata.github.io/08-lecture-data_visualization/group-session/GroupSession_08.html" target="_blank">Instruction</a>
+				</section>
+				
+				<section>
+				<!-- Slide 22 -->	
+					<h3>Any questions?</h3>
+					For all the course materials, go to <a href="https://urbanbigdata.github.io/" target="_blank">urbanbigdata.github.io</a>
+				</section>
+					
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				slideNumber : true,
+				//previewLinks: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				
+				chalkboard: { 
+					// optionally load pre-recorded chalkboard drawing from file
+					//src: "chalkboard.json",
+					color: [ 'rgba(0,0,255,1)', 'rgba(255,255,255,0.5)' ],
+					background: [ 'rgba(127,127,127,.1)' , 'reveal.js-plugins/chalkboard/img/blackboard.png' ]
+					
+				},
+				  
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/chalkboard/chalkboard.js' }
+				],
+				
+				keyboard: {
+				    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+				    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+				    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+				     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+				    68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
+				}
+			});
+		</script>
+	</body>
+</html>

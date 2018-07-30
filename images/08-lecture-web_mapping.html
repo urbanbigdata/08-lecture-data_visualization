@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- saved from url=(0124)file:///Users/andyhong/Documents/7-Teaching/Urban%20Big%20Data%20Analytics/01-Lectures/08-lecture-web_mapping/index.html#/17 -->
+<html class=" js no-mobile desktop no-ie chrome chrome67 users-section andyhong-section documents-section 7-teaching-section urban%20big%20data%20analytics-section 01-lectures-section 08-lecture-web_mapping-section w-1145 gt-240 gt-320 gt-480 gt-640 gt-768 gt-800 gt-1024 lt-1280 lt-1440 lt-1680 lt-1920 no-portrait landscape gradient rgba opacity textshadow multiplebgs boxshadow borderimage borderradius cssreflections csstransforms csstransitions no-touch retina fontface domloaded" id="index-page"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>08-lecture-web_mapping</title>
+
+		<link rel="stylesheet" href="./08-lecture-web_mapping_files/reveal.css">
+		<link rel="stylesheet" href="./08-lecture-web_mapping_files/black.css">
+		
+		<!-- Include buttons for opening and closing the notes canvas or the chalkboard -->
+		<link rel="stylesheet" href="./08-lecture-web_mapping_files/font-awesome.min.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="./08-lecture-web_mapping_files/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script><link rel="stylesheet" type="text/css" href="./08-lecture-web_mapping_files/paper.css"><script type="text/javascript" src="./08-lecture-web_mapping_files/marked.js"></script><script type="text/javascript" src="./08-lecture-web_mapping_files/markdown.js"></script><script type="text/javascript" src="./08-lecture-web_mapping_files/chalkboard.js"></script><script type="text/javascript" src="./08-lecture-web_mapping_files/notes.js"></script><script type="text/javascript" src="./08-lecture-web_mapping_files/highlight.js"></script>
+	</head>
+	<body>
+		<div class="reveal slide center has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade">
+			<div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.977829);">
+				<section data-background-image="images/astemir-almov-265122-unsplash.jpg" data-state="dimbg_dark" hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Front page -->
+					<h1>Urban Big Data Analytics</h1>
+					
+					<i>Class 8</i><br>
+					<i>Data Visualization and Web Mapping</i><br><br>
+					
+					<p>
+					<small> July 30, 2018<br><br>
+					
+					Instructor: <a href="http://andyhong.org/" target="_blank">Andy Hong</a>, <i>PhD</i><br>
+					
+					Postdoctoral Research and Teaching Fellow<br>
+					School of Population and Public Health<br>
+					University of British Columbia
+					</small>
+					</p>
+				</section>
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 1 -->
+					<h2>Assignment 4 out</h2>
+					<ul>
+						<li>More hands-on training in R</li>
+						<li>EDA and visualization</li>
+						<li>Send your R code to my email</li>
+					</ul>					
+				</section>
+				<section data-background-image="images/data_visualization.jpg" data-state="dimbg_dark" hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 2 -->
+				<div style="text-align:left; position:absolute; left:20%;">
+				<h1>Data Visualization</h1>
+				</div>
+				</section>
+				<section data-background-image="images/data_visualization.jpg" data-state="dimbg_dark" hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 3 -->	
+					<h2>What is data visualization?</h2>
+					<ul>						
+						<li>Representing data in a graphical format</li>
+						<li>Transforming numbers into visuals</li>
+						<li>Good visuals: simple, intuitive, and yet powerfully complex</li>
+						<li>One good plot beats hundred tables!</li>
+					</ul>						
+				</section>
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 4 -->	
+					<h2>Typical activities in a day</h2>
+					<small><a href="https://www.nytimes.com/2009/08/02/business/02metrics.html" target="_blank">New York Times graphics</a></small><br>
+					<img src="./08-lecture-web_mapping_files/nyt_24_hours.png" height="500">
+				</section>
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 5 -->	
+					<h2>The rhythm of food</h2>
+					<small><a href="http://rhythm-of-food.net/peach" target="_blank">http://rhythm-of-food.net/peach</a></small><br>
+					<img src="./08-lecture-web_mapping_files/peach.png" height="500">
+				</section>
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 6 -->	
+				<h2>Data visualization basic</h2>
+				<small><a href="http://vissoc.co/" target="_blank">Adapted from Kieran Healy's data visualization book</a></small><br>
+				<ul>						
+					<li>Understand your data</li>
+					<li>Bad graphics vs. good graphics</li>
+					<li>Bad data vs. good data</li>
+					<li>Misleading data</li>
+				</ul>
+				</section>				
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 7 -->	
+				<h2>Tufte's 10 Rules</h2>
+				<img src="./08-lecture-web_mapping_files/tufte_bio.jpg" height="400" style="float: left; margin-right: 100px">
+				<ul style="display: block">
+					<li>Edward Tufte - Yale professor</li>
+					<li>Living legend and expert in data visualization</li>
+					<li>"The da Vinci of data"</li>
+					<li>"Chart Master"</li>
+					<li>"The Data Artist"</li>	
+				</ul>
+				</section>
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 8 -->	
+				<h2>1. Show your data</h2>
+				<div style="position:relative; width:900px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule1a.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-in visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule1b.png" style="position:absolute;center:0;left:0;">
+				</div>
+				</section>
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 9 -->	
+				<h2>2. Use graphics</h2>
+				<div style="position:relative; margin:0 auto;">
+				  <img src="./08-lecture-web_mapping_files/rule2.jpg" width="900px" height="500px" style="osition:absolute;center:0;left:0;">
+				  <img class="fragment fade-in visible" data-fragment-index="0" width="700px" height="250px" src="./08-lecture-web_mapping_files/rule2_quote.png" style="position:absolute;bottom:0;right:0;">
+				</div>
+				</section>
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 10 -->	
+				<h2>3. Avoid chartjunk</h2>
+				<div style="position:relative; width:900px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule3a.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-in visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule3b.png" style="position:absolute;center:0;left:0;">
+				</div>
+				</section>
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 11 -->	
+				<h2>4. Utilize data-ink</h2>
+				<div style="position:relative; width:900px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule4a.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-in visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule4b.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-in visible" data-fragment-index="1" src="./08-lecture-web_mapping_files/rule4c.png" style="position:absolute;center:0;left:0;">
+			  </div>
+				</section>
+				
+				<section hidden="" aria-hidden="true" class="past" style="top: 350px; display: none;">
+				<!-- Slide 12 -->	
+				<h2>5. Use labels</h2>
+				<div style="position:relative; width:900px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule5a.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-in visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule5b.png" style="position:absolute;center:0;left:0;">
+				</div>
+				</section>
+				
+				<section hidden="" aria-hidden="true" class="past" style="top: 30px; display: none;">
+				<!-- Slide 13 -->	
+				<h2>6. Utilize micro/macro</h2>
+				<div style="position:relative; width:900px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule6a.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-in visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule6b.png" style="position:absolute;center:0;left:0;">
+					<img class="fragment fade-in visible" data-fragment-index="1" width="700px" height="200px" src="./08-lecture-web_mapping_files/rule6_quote.png" style="position:absolute;bottom:0;right:0;">
+				</div>
+				</section>
+				
+				<section hidden="" aria-hidden="true" class="past" style="top: 30px; display: none;">
+				<!-- Slide 14 -->	
+				<h2>7. Separate layers</h2>
+				<div style="position:relative; width:900px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule7a.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-in visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule7b.png" style="position:absolute;center:0;left:0;">
+				</div>
+				</section>
+				
+				<section class="past" style="top: 30px; display: block;" hidden="" aria-hidden="true">
+				<!-- Slide 15 -->	
+				<h2>8. Use multiples</h2>
+				<div style="position:relative; width:900px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule8a.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-in visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule8b.png" style="position:absolute;center:0;left:0;">
+					<img class="fragment fade-in visible" data-fragment-index="1" width="700px" height="250px" src="./08-lecture-web_mapping_files/rule8_quote.png" style="position:absolute;bottom:0;right:0;">
+				</div>
+				</section>
+				
+				<section class="past" style="top: 30px; display: block;" hidden="" aria-hidden="true">
+				<!-- Slide 16 -->	
+				<h2>9. Utilize color</h2>
+				<div style="position:relative; width:900px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule9a.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-up visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule9b.png" style="position:absolute;center:0;left:0;">
+				</div>
+				</section>
+				
+				<section class="present" style="top: 30px; display: block;">
+				<!-- Slide 17 -->	
+				<h2>10. Understand narrative</h2>
+				<div style="position:relative; width:900px; height:500px; margin:0 auto;">
+				  <img class="fragment fade-out visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule10a.png" style="position:absolute;center:0;left:0;">
+				  <img class="fragment fade-up visible" data-fragment-index="0" src="./08-lecture-web_mapping_files/rule10b.png" style="position:absolute;center:0;left:0;">
+				</div>
+				</section>
+				
+				<section class="future" style="top: 233.5px; display: block;" hidden="" aria-hidden="true">
+				<!-- Slide 18 -->	
+					<h3>Any questions?</h3>
+					For all the course materials, go to <a href="https://urbanbigdata.github.io/" target="_blank">urbanbigdata.github.io</a>
+				</section>
+					
+			</div>
+		<div class="chalkboard-button" id="toggle-chalkboard" style="visibility: visible; position: absolute; z-index: 30; font-size: 24px; left: 30px; bottom: 30px; top: auto; right: auto;"><a href="file:///Users/andyhong/Documents/7-Teaching/Urban%20Big%20Data%20Analytics/01-Lectures/08-lecture-web_mapping/index.html#" onclick="RevealChalkboard.toggleChalkboard(); return false;"><i class="fa fa-pencil-square-o"></i></a></div><div class="chalkboard-button" id="toggle-notes" style="position: absolute; z-index: 30; font-size: 24px; left: 70px; bottom: 30px; top: auto; right: auto;"><a href="file:///Users/andyhong/Documents/7-Teaching/Urban%20Big%20Data%20Analytics/01-Lectures/08-lecture-web_mapping/index.html#" onclick="RevealChalkboard.toggleNotesCanvas(); return false;"><i class="fa fa-pencil"></i></a></div><div id="notescanvas" class="overlay visible" data-prevent-swipe="" style="cursor: url(&quot;file:///Users/andyhong/Documents/7-Teaching/Urban%20Big%20Data%20Analytics/01-Lectures/08-lecture-web_mapping/plugin/chalkboard/img/boardmarker.png&quot;), auto; background: rgba(0, 0, 0, 0); z-index: 24; pointer-events: none;"><img src="./08-lecture-web_mapping_files/sponge.png" id="sponge" style="visibility: hidden; position: absolute;"><canvas width="1145" height="713" data-chalkboard="0" style="cursor: url(&quot;file:///Users/andyhong/Documents/7-Teaching/Urban%20Big%20Data%20Analytics/01-Lectures/08-lecture-web_mapping/plugin/chalkboard/img/boardmarker.png&quot;), auto;"></canvas></div><div id="chalkboard" class="overlay" data-prevent-swipe="" style="cursor: url(&quot;file:///Users/andyhong/Documents/7-Teaching/Urban%20Big%20Data%20Analytics/01-Lectures/08-lecture-web_mapping/plugin/chalkboard/img/chalk.png&quot;), auto; background: url(&quot;reveal.js-plugins/chalkboard/img/blackboard.png&quot;) repeat; z-index: 26;"><img src="./08-lecture-web_mapping_files/sponge.png" id="sponge" style="visibility: hidden; position: absolute;"><canvas width="1145" height="713" data-chalkboard="1" style="cursor: url(&quot;file:///Users/andyhong/Documents/7-Teaching/Urban%20Big%20Data%20Analytics/01-Lectures/08-lecture-web_mapping/plugin/chalkboard/img/chalk.png&quot;), auto;"></canvas></div><div class="backgrounds"><div class="slide-background past" data-background-hash="0images/astemir-almov-265122-unsplash.jpgnullnullnullnullnullnull" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" data-background-hash="0images/data_visualization.jpgnullnullnullnullnullnull" style="display: none;"></div><div class="slide-background past" data-background-hash="0images/data_visualization.jpgnullnullnullnullnullnull" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" style="display: none;"></div><div class="slide-background past" data-loaded="true" style="display: none;"></div><div class="slide-background past" data-loaded="true" style="display: none;"></div><div class="slide-background past" data-loaded="true" style="display: block;"></div><div class="slide-background past" data-loaded="true" style="display: block;"></div><div class="slide-background present" data-loaded="true" style="display: block;"></div><div class="slide-background future" style="display: block;" data-loaded="true"></div></div><div class="progress" style="display: block;"><span style="width: 1138.64px;"></span></div><aside class="controls" data-controls-layout="bottom-right" data-controls-back-arrows="faded" style="display: block;"><button class="navigate-left enabled fragmented" aria-label="previous slide"><div class="controls-arrow"></div></button><button class="navigate-right enabled" aria-label="next slide"><div class="controls-arrow"></div></button><button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button><button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="slide-number" style="display: block;"><span class="slide-number-a">18</span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);">
+					
+				10. Understand narrative
+				
+				  
+				  
+				
+				</div></div>
+
+		<script src="./08-lecture-web_mapping_files/head.min.js"></script>
+		<script src="./08-lecture-web_mapping_files/reveal.js"></script>
+
+		<script>
+			
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				slideNumber : true,
+				//previewLinks: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				
+				chalkboard: { 
+					// optionally load pre-recorded chalkboard drawing from file
+					//src: "chalkboard.json",
+					color: [ 'rgba(0,0,255,1)', 'rgba(255,255,255,0.5)' ],
+					background: [ 'rgba(127,127,127,.1)' , 'reveal.js-plugins/chalkboard/img/blackboard.png' ]
+					
+				},
+				  
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/chalkboard/chalkboard.js' }
+				],
+				
+				keyboard: {
+				    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+				    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+				    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+				     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+				    68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
+				}
+			});
+		</script>
+	
+
+</body></html>
