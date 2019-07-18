@@ -1,0 +1,300 @@
+---
+title: "Urban Big Data Analytics - Lecture 8 Group Session: Data Visualization and Web Mapping"
+author: "Andy Hong"
+date: "July 29, 2019"
+output:
+  html_document:
+    css: my_styles.css
+  pdf_document: default
+  word_document: default
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+gapminder = read.csv("/Users/andyhong/Documents/7-Teaching/Urban Big Data Analytics/03-GroupSessions/08-group-data_visualization/gapminder_data_2016.csv")
+  
+geo = read.csv("/Users/andyhong/Documents/7-Teaching/Urban Big Data Analytics/03-GroupSessions/08-group-data_visualization/gapminder_geo.csv")
+```
+
+<br>
+
+## Prerequisites
+
+Please locate your `vsp_bigdata` folder under "My Documents" and navigate to `group-session`. Create `08-lecture` folder under the `group-session` folder.
+
+1. For this group session, we will use the Gapminder database. <br>
+Please download this CSV file and save it under the group session folder: <a href="http://urbanbigdata.github.io/08-lecture-data_visualization/group-session/gapminder_data_2016.csv" download> Gapminder data 2016 </a><br>
+
+2. Now, you need to download the gapminder geographic data (coordinates): <a href="http://urbanbigdata.github.io/08-lecture-data_visualization/group-session/gapminder_geo.csv" download> Gapminder geographic coordinates </a>
+
+<br><br>
+
+
+## Instruction
+
+### 1. Synopsis
+The purpose of this group session is to get you familiar with **visualization and web mapping**. We will go through three parts. <br> 
+
+First, we will join the gapminder data with the geographic coordinates. <br>
+
+Second, we will create a few plots showing the relationship between income and life expectancy. <br>
+
+Third, we will create a map showing each of the variables. Then we will export the map as an interactive web map that can be shared with other people.
+
+<br><br>
+
+### 2. Part one - Joining data
+
+First, we are going to join the gapminder data with the geographic coordinates data. Let's load the libraries first.
+
+```{r warning=FALSE, message=FALSE}
+
+# Set CRAN repository source
+options(repos="https://cran.rstudio.com" )
+
+# Install packages
+install.packages("leaflet")
+install.packages("dplyr")
+install.packages("magrittr")
+install.packages("ggplot2")
+install.packages("plotly")
+
+# Load packages
+library(leaflet)
+library(dplyr)
+library(magrittr)
+library(ggplot2)
+library(plotly)
+```
+
+Let's load the data.
+
+```{r, eval=F}
+
+# Paths
+gapminder = read.csv(file.choose())
+geo = read.csv(file.choose())
+
+```
+
+Let's examine the data with the `head()` function.
+
+```{r}
+head(gapminder)
+head(geo)
+```
+
+We can also view the data in a more familiar tabular format.
+
+```{r}
+# View(gapminder)
+# View(geo)
+```
+
+Another way to see the "structure" of the dataset is to run the `str()` function.
+
+```{r}
+str(gapminder)
+str(geo)
+```
+
+You will notice that the first 2 columns/variables "name" and "region" are both "Factor" type variables. This means that they are texts, or more precisely, categorical variables. "income"" and  "lifeExp" are  "int" Integer and "num" Numeric type variables.<br>
+
+The geo dataset contain `name` as well as `lat`, `long`, and `population` columns. "lat" and "long" columns are "num" Numeric type variables, and `population` is "int" Interger type variable.<br>
+
+The built in function `summary()` in base R does a good simple summary statistics for all variables in the dataset provided. Since this dataset only has 4 variables, we can simply call `summary(gapminder)` which will give us the summary statistics for all 4 variables.
+
+```{r}
+summary(gapminder)
+```
+
+It looks like the column `name` is common across the two data sets. Now, let's join the data together to prepare for mapping later. We are going to use `inner_join` so that we only choose countries with complete geographic data.
+
+```{r}
+
+# Join gapminder data and the geographic coordinates
+gapminder = gapminder %>% inner_join(geo, by="name")
+
+# Check the joined data
+head(gapminder)
+
+```
+
+<br><br>
+
+### 3. Part two - Creating plots
+
+Now, let's create some plots for exploratory data anlysis. We will first create a boxplot showing the life expectancy grouped by different continents.
+
+```{r warning=FALSE}
+ggplot(gapminder, aes(x = region, y = lifeExp)) +
+  geom_boxplot(outlier.colour = "hotpink") +
+  geom_jitter(position = position_jitter(width = 0.1, height = 0), alpha = 1/4)
+```
+
+Let's first explore the relationship between income and life expectancy. What relationship do we expect to see?
+
+```{r warning=FALSE}
+ggplot(gapminder, aes(x = income, y = lifeExp)) +
+  geom_point()
+  
+```
+
+We can be a little fancy by adding a smooth trend line.
+
+```{r warning=FALSE, message=FALSE}
+ggplot(gapminder, aes(x = income, y = lifeExp)) +
+  geom_point() +
+  geom_smooth()
+  
+```
+
+We can also color different continents.
+```{r warning=FALSE, message=FALSE}
+ggplot(gapminder, aes(x = income, y = lifeExp)) +
+  geom_point(aes(color = region)) +
+  geom_smooth()
+  
+```
+
+We can color the trend lines as well.
+```{r warning=FALSE, message=FALSE}
+ggplot(gapminder, aes(x = income, y = lifeExp)) +
+  geom_point(aes(color = region)) +
+  geom_smooth(aes(color = region))
+  
+```
+
+Or we can just cut the data and show each continent separately
+```{r warning=FALSE, message=FALSE, fig.width=9, fig.height=4.5}
+ggplot(gapminder, aes(x = income, y = lifeExp)) +
+  geom_point(aes(color = region)) +
+  geom_smooth() + 
+  facet_grid(.~region)
+```
+
+The X axis is hard to read. Let's rotate the texts.
+
+```{r warning=FALSE, message=FALSE, fig.width=9, fig.height=4.5}
+ggplot(gapminder, aes(x = income, y = lifeExp)) +
+  geom_point(aes(color = region)) +
+  geom_smooth() + 
+  facet_grid(.~region) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Lastly, we can also make the plot interactive, so that we can see which dot represents which country. Note that we added a `text` option in `geom_point` to include country names.
+
+```{r warning=FALSE, message=FALSE, fig.width=9, fig.height=4.5}
+p = ggplot(gapminder, aes(x = income, y = lifeExp)) +
+  geom_point(aes(text = paste("Country:", name), color = region)) +
+  geom_smooth() + 
+  facet_grid(.~region) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplotly(p)
+```
+
+<br><br>
+
+
+### 4. Part three - Creating an interactive map
+
+In part three, we will create an interactive web map using the gapminder data. Ealier we jointed the coordinate information to the gapminder dataset, so we can use the coordinates to show countries on the map. We will use the powerful `leaflet` package to accomplish this task. First, we will just plot the points on the map, and use `addCircleMarker` function to visualize variales on the map. <br>
+
+Let's initiate `leaflet` add the empty map tiles. We can use different map tiles available here: <a href="http://leaflet-extras.github.io/leaflet-providers/preview/" target="_blank">http://leaflet-extras.github.io/leaflet-providers/preview/</a>
+
+```{r}
+leaflet(gapminder) %>% addTiles()
+
+# leaflet(gapminder) %>% addProviderTiles(provider = "Stamen.TonerLite")
+# leaflet(gapminder) %>% addProviderTiles(provider = "Stamen.Toner")
+# leaflet(gapminder) %>% addProviderTiles(provider = "Esri.WorldImagery")
+
+```
+
+Now, let's add the latitude and longitude points on the map. Note that we use the squiggly `~` sign to use the column names without the data name.
+
+```{r}
+leaflet(gapminder) %>% addTiles() %>% addCircleMarkers(~long, ~lat)
+```
+
+Let's use the variable `income` to visualize income levels on the map.
+
+```{r}
+leaflet(gapminder) %>% addTiles() %>% addCircleMarkers(~long, ~lat, radius=~income)
+```
+
+What do you see on the screen? Why is it all blue? <br>
+The `income` data ranges from $650 to $118,000.
+
+```{r}
+gapminder %>% summarise(min=min(income), max=max(income))
+
+```
+
+We need to scale the data to visualize it on the map. We will first divide the income by 1000 and take the square root to scale the data exponentially.
+
+```{r}
+leaflet(gapminder) %>% addTiles() %>% addCircleMarkers(~long, ~lat, radius=~sqrt(income/1000))
+```
+
+<b>Congratulations! You created your first interactive map.</b><br><br>
+
+Now it's a lot better, but we don't know which country is which, and the points don't show anything if we hover over them. Let's label the point with the country name.
+
+```{r}
+leaflet(gapminder) %>% addTiles() %>% addCircleMarkers(~long, ~lat, radius=~sqrt(income/1000), label=~name)
+```
+
+We can see the country name when we move the mouse over to each circle. One way to make all these fancy is to create a `variable` column that computes our variable of interest to scale appropriately and give an appropriate label. <br>
+
+Note that we can chain multiple variables through the `mutate` function.
+
+
+```{r}
+gapminder = gapminder %>% mutate(variable = income/1000,
+                                 label = paste(name, "- Income: ", variable, "k"))
+```
+
+Now, let's see the final map with an appropriate scale and label.
+
+```{r}
+leaflet(gapminder) %>% addTiles() %>% addCircleMarkers(~long, ~lat, radius=~sqrt(variable), label=~label, weight=2)
+```
+
+For fun, we can color each circle according to its continent and look for any spatial patterns.
+
+```{r}
+pal = colorFactor(rainbow(4), gapminder$region)
+
+leaflet(gapminder) %>% 
+  addTiles() %>% 
+  addCircleMarkers(~long, ~lat, radius=~sqrt(variable), label=~label, weight=2, color=~pal(region))
+```
+
+<br><br>
+
+
+## Export and share the plot and the map
+
+1. Create a boxplot showing the relationship between population and life expectancy. <br>
+
+2. Create an interactive map showing the life expectancy of each country <br>
+
+3. Create a short report that includes the plot and the map and send the document to the course email (urbanbigdata2019@gmail.com). 
+  + <font color="red"><b>[IMPORTANT]</b></font> Please use the following email title format: <br>
+ `VSP BigData [lecture number] - [group number] - [presenter name]` <br>
+ ex), `VSP BigData Lecture 8 - Group 1 - Bill Gates` <br>
+ 
+ 
+<br><br><br>
+ 
+
+ 
+
+
+
+
