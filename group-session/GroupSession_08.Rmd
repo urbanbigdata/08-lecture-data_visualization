@@ -343,7 +343,7 @@ There are others ways to customize your plots. For further information, check ou
 
 4. Create a short report that includes the plot and the map, and describe each of your graphics.
 
-5. <font color="red">For advanced students</font>, use the `grid.arrange()` function to combine two plots: a box plot showing income levels; a scatter plot showing the relationship between life expectancy and income. Please add the title for each plot using the `ggtitle` function.  <font color="red">Extra 2 points</font>: Along with your assignment 4, add the combined graphs with titles and descriptions.
+5. <font color="red">For advanced students</font>, use the `grid.arrange()` function to combine two plots: a box plot showing income levels; a scatter plot showing the relationship between income and life expectancy. Please add the title for each plot using the `ggtitle` function.  <font color="red">Extra 2 points</font>: Along with your assignment 4, add the combined graphs with titles and descriptions.
 
 6. Send your report to the course email (urbanbigdata2019@gmail.com). 
   + <font color="red"><b>[IMPORTANT]</b></font> Please use the following email title format: <br>
