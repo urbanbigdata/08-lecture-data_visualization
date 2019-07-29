@@ -285,7 +285,7 @@ For fun, we can color each circle according to its continent and look for any sp
 ```{r}
 pal = colorFactor(rainbow(4), gapminder$region)
 
-g = leaflet(gapminder) %>% 
+leaflet(gapminder) %>% 
   addTiles() %>% 
   addCircleMarkers(~long, ~lat, radius=~sqrt(variable), label=~label, weight=2, color=~pal(region))
 ```
